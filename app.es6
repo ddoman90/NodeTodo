@@ -4,13 +4,15 @@ var mongoose = require('mongoose');
 var config = require('./config/index.es6');
 var port = process.env.PORT || 3000;
 var setupController = require('./controllers/setupController');
+var apiController = require('./controllers/apiController.es6');
 
 app.use('/assets', express.static(__dirname + '/public'));
 
 app.set('view engine', 'ejs');
 
 mongoose.connect(config.getDbConnectionString());
-console.log('register');
+
 setupController(app);
+apiController(app);
 
 app.listen(port);
